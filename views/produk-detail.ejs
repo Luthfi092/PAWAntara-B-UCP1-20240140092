@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <%- include('partials/navbar') %>
+
+  <main>
+    <% if (!product) { %>
+      <section class="not-found-section">
+        <div class="not-found-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h1>Produk Tidak Ditemukan</h1>
+        <p>Maaf, produk dengan ID tersebut tidak tersedia di toko kami.</p>
+        <a href="/produk" class="btn btn-primary">Kembali ke Daftar Produk</a>
+      </section>
+    <% } else { %>
+      <section class="product-detail-section">
+        <a href="/produk" class="back-link">&larr; Kembali ke Produk</a>
+
+        <article class="product-detail-card">
+          <div class="product-detail-thumb" aria-hidden="true">
+            <%- productIcon(product.category) %>
+          </div>
+          <div class="product-detail-body">
+            <p class="product-category"><%= product.category %></p>
+            <h1><%= product.name %></h1>
+            <p class="product-detail-price">Rp <%= product.price.toLocaleString('id-ID') %></p>
+            <p class="product-detail-stock">Stok tersedia: <strong><%= product.stock %></strong> unit</p>
+            <p class="product-detail-desc"><%= product.description %></p>
+            <a href="/produk" class="btn btn-primary">Lihat Produk Lainnya</a>
+          </div>
+        </article>
+      </section>
+    <% } %>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>
