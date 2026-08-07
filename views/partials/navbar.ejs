@@ -1,0 +1,31 @@
+<header class="site-header">
+  <nav class="navbar" aria-label="Navigasi utama">
+    <a href="/" class="brand">
+      <svg class="brand-mark" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="17" cy="17" r="16" fill="#1F4E8C"/>
+        <path d="M11 22c0-6.5 2.7-11 6-11s6 4.5 6 11" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="17" cy="22" r="2.6" fill="#E0568A"/>
+      </svg>
+      <span class="brand-text">Toko Bu Aries</span>
+    </a>
+
+    <button
+      class="hamburger"
+      id="hamburgerBtn"
+      aria-label="Buka menu navigasi"
+      aria-expanded="false"
+      aria-controls="navLinks"
+    >
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/" class="<%= activePage === 'beranda' ? 'active' : '' %>">Beranda</a></li>
+      <li><a href="/produk" class="<%= activePage === 'produk' ? 'active' : '' %>">Produk</a></li>
+      <li><a href="/tanya-ai" class="<%= activePage === 'tanya-ai' ? 'active' : '' %>">Tanya AI</a></li>
+      <li><a href="/api/products" class="nav-api-link">API JSON</a></li>
+    </ul>
+  </nav>
+</header>
