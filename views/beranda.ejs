@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <%- include('partials/navbar') %>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <p class="hero-eyebrow">Warung sembako harian</p>
+        <h1>Belanja dapur yang <em>terasa akrab</em>, harganya jujur</h1>
+        <p class="hero-desc">
+          Dari beras, minyak, sampai bumbu dapur — Bu Aries menjaga stok dan
+          harga tetap stabil supaya belanja bulanan keluarga Anda tidak
+          membuat pusing kepala.
+        </p>
+        <div class="hero-actions">
+          <a href="/produk" class="btn btn-primary">Lihat Semua Produk</a>
+          <a href="/tanya-ai" class="btn btn-outline">Tanya AI</a>
+        </div>
+      </div>
+      <div class="hero-tagboard" aria-hidden="true">
+        <div class="price-tag">
+          <span class="tag-label">Beras 5kg</span>
+          <span class="tag-price">Rp 68rb</span>
+        </div>
+        <div class="price-tag price-tag-secondary">
+          <span class="tag-label">Kopi 200g</span>
+          <span class="tag-price">Rp 18,5rb</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="preview-section" aria-labelledby="preview-heading">
+      <div class="section-heading">
+        <h2 id="preview-heading">Produk Pilihan Minggu Ini</h2>
+        <a href="/produk" class="link-more">Lihat semua &rarr;</a>
+      </div>
+
+      <div class="product-grid">
+        <% previewProducts.forEach(function(product) { %>
+          <article class="product-card">
+            <div class="product-thumb"><%- productIcon(product.category) %></div>
+            <div class="product-body">
+              <p class="product-category"><%= product.category %></p>
+              <h3 class="product-name"><%= product.name %></h3>
+              <p class="product-price">Rp <%= product.price.toLocaleString('id-ID') %></p>
+              <a href="/produk/<%= product.id %>" class="btn btn-sm">Lihat Detail</a>
+            </div>
+          </article>
+        <% }); %>
+      </div>
+    </section>
+
+    <section class="highlight-section">
+      <article class="highlight-card">
+        <div class="highlight-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 7h11v8H3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+            <path d="M14 10h4l3 3v2h-7v-5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+            <circle cx="7" cy="17.5" r="1.6" stroke="currentColor" stroke-width="1.7"/>
+            <circle cx="17.5" cy="17.5" r="1.6" stroke="currentColor" stroke-width="1.7"/>
+          </svg>
+        </div>
+        <h3>Pengiriman Hari yang Sama</h3>
+        <p>Order pagi, sore biasanya sudah sampai di rumah — khusus wilayah sekitar toko.</p>
+      </article>
+      <article class="highlight-card">
+        <div class="highlight-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 12.5 9 17l11-11" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Stok Dicek Tiap Pagi</h3>
+        <p>Barang yang tampil di sini disesuaikan langsung dengan stok gudang toko.</p>
+      </article>
+      <article class="highlight-card">
+        <div class="highlight-icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 5h16v10H9l-4 4v-4H4V5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+            <path d="M8 9h8M8 12h5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Tanya AI</h3>
+        <p>Bingung mau masak apa? Tanyakan kebutuhan belanja lewat fitur Tanya AI.</p>
+      </article>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+</body>
+</html>
