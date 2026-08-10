@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <%- include('partials/navbar') %>
+
+  <main>
+    <section class="page-header">
+      <h1>Dashboard Admin</h1>
+      <p>Halo, <strong><%= username %></strong> — kelola produk, harga, dan stok toko di sini.</p>
+    </section>
+
+    <section class="dashboard-layout">
+      <div class="dashboard-form-card">
+        <h2 id="formTitle">Tambah Produk Baru</h2>
+        <div id="productFormError" class="form-error" role="alert" hidden></div>
+        <form id="productForm" novalidate>
+          <input type="hidden" id="productId" value="" />
+
+          <div class="form-group">
+            <label for="name">Nama Produk</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="category">Kategori</label>
+            <input type="text" id="category" name="category" list="categoryOptions" required placeholder="mis. sembako, bumbu, protein, minuman" />
+            <datalist id="categoryOptions">
+              <% categories.forEach(function(cat) { %>
+                <option value="<%= cat %>"></option>
+              <% }); %>
+            </datalist>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="price">Harga (Rp)</label>
+              <input type="number" id="price" name="price" min="0" step="500" required />
+            </div>
+            <div class="form-group">
+              <label for="stock">Stok</label>
+              <input type="number" id="stock" name="stock" min="0" step="1" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="description">Deskripsi (opsional)</label>
+            <textarea id="description" name="description" rows="2"></textarea>
+          </div>
+
+          <div class="form-group form-actions">
+            <button type="submit" class="btn btn-primary" id="submitBtn">Simpan Produk</button>
+            <button type="button" class="btn btn-outline" id="cancelEditBtn" hidden>Batal Edit</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="dashboard-table-card">
+        <div class="section-heading">
+          <h2>Daftar Produk (<span id="productCount"><%= initialProducts.length %></span>)</h2>
+        </div>
+        <div class="table-wrap">
+          <table class="product-table" id="productTable">
+            <thead>
+              <tr>
+                <th>Nama</th>
+                <th>Kategori</th>
+                <th>Harga</th>
+                <th>Stok</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="productTableBody">
+              <!-- diisi lewat JS dari GET /api/products -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script id="initial-products-data" type="application/json"><%- JSON.stringify(initialProducts) %></script>
+  <%- include('partials/footer') %>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>
