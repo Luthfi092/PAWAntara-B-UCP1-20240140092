@@ -14,64 +14,37 @@
 
     <section class="filter-section" aria-labelledby="filter-heading">
       <h2 id="filter-heading" class="sr-only">Filter Produk</h2>
-      <form method="GET" action="/produk" class="filter-form">
+      <form id="filterForm" class="filter-form">
         <div class="form-group">
           <label for="search">Cari nama produk</label>
-          <input
-            type="text"
-            id="search"
-            name="search"
-            placeholder="Contoh: beras"
-            value="<%= query.search %>"
-          />
+          <input type="text" id="search" name="search" placeholder="Contoh: beras" />
         </div>
 
         <div class="form-group">
           <label for="kategori">Kategori</label>
           <select id="kategori" name="kategori">
             <option value="">Semua kategori</option>
-            <% categories.forEach(function(cat) { %>
-              <option value="<%= cat %>" <%= query.kategori === cat ? 'selected' : '' %>>
-                <%= cat.charAt(0).toUpperCase() + cat.slice(1) %>
-              </option>
-            <% }); %>
+            <!-- opsi kategori diisi otomatis lewat JS dari data /api/products -->
           </select>
         </div>
 
         <div class="form-group form-actions">
           <button type="submit" class="btn btn-primary">Terapkan Filter</button>
-          <a href="/produk" class="btn btn-outline">Reset</a>
+          <button type="button" id="resetFilterBtn" class="btn btn-outline">Reset</button>
         </div>
       </form>
     </section>
 
     <section class="product-list-section" aria-labelledby="list-heading">
       <h2 id="list-heading" class="sr-only">Daftar Produk</h2>
-
-      <% if (products.length === 0) { %>
-        <div class="empty-state">
-          <p>Produk tidak ditemukan untuk filter yang dipilih.</p>
-          <a href="/produk" class="btn btn-sm">Reset Filter</a>
-        </div>
-      <% } else { %>
-        <div class="product-grid">
-          <% products.forEach(function(product) { %>
-            <article class="product-card">
-              <div class="product-thumb"><%- productIcon(product.category) %></div>
-              <div class="product-body">
-                <p class="product-category"><%= product.category %></p>
-                <h3 class="product-name"><%= product.name %></h3>
-                <p class="product-price">Rp <%= product.price.toLocaleString('id-ID') %></p>
-                <p class="product-stock">Stok: <%= product.stock %></p>
-                <a href="/produk/<%= product.id %>" class="btn btn-sm">Lihat Detail</a>
-              </div>
-            </article>
-          <% }); %>
-        </div>
-      <% } %>
+      <div class="product-grid" id="productGrid">
+        <!-- diisi lewat JS dari GET /api/products -->
+      </div>
     </section>
   </main>
 
+  <script id="icons-data" type="application/json"><%- JSON.stringify(iconsMap) %></script>
   <%- include('partials/footer') %>
+  <script src="/js/produk.js"></script>
 </body>
 </html>
