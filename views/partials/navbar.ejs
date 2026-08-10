@@ -25,7 +25,13 @@
       <li><a href="/" class="<%= activePage === 'beranda' ? 'active' : '' %>">Beranda</a></li>
       <li><a href="/produk" class="<%= activePage === 'produk' ? 'active' : '' %>">Produk</a></li>
       <li><a href="/tanya-ai" class="<%= activePage === 'tanya-ai' ? 'active' : '' %>">Tanya AI</a></li>
-      <li><a href="/api/products" class="nav-api-link">API JSON</a></li>
+      <% if (isLoggedIn) { %>
+        <li><a href="/dashboard" class="<%= activePage === 'dashboard' ? 'active' : '' %>">Dashboard</a></li>
+        <li><button type="button" id="logoutBtn" class="nav-logout-link">Logout</button></li>
+      <% } else { %>
+        <li><a href="/login" class="<%= activePage === 'login' ? 'active' : '' %>">Login</a></li>
+      <% } %>
+    
     </ul>
   </nav>
 </header>
