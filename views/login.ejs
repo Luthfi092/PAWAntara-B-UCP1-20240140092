@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <%- include('partials/navbar') %>
+
+  <main>
+    <section class="auth-section">
+      <div class="auth-card">
+        <p class="hero-eyebrow">Khusus Admin/Kasir</p>
+        <h1>Masuk ke Dashboard</h1>
+        <p class="auth-desc">Login untuk mengelola produk, harga, dan stok toko.</p>
+
+        <div id="loginError" class="form-error" role="alert" hidden></div>
+
+        <form id="loginForm" class="auth-form" novalidate>
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" autocomplete="username" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" autocomplete="current-password" required />
+          </div>
+          <button type="submit" class="btn btn-primary" id="loginSubmitBtn">Login</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+  <script src="/js/auth.js"></script>
+</body>
+</html>
