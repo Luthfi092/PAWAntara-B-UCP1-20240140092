@@ -15,34 +15,30 @@
     <section class="chat-section" aria-labelledby="chat-heading">
       <h2 id="chat-heading" class="sr-only">Ruang Percakapan</h2>
 
-      <div class="chat-window" role="log" aria-live="polite">
+      <div class="chat-window" id="chatWindow" role="log" aria-live="polite">
         <div class="chat-bubble chat-bubble-ai">
-          <p>Halo! Saya asisten toko. Fitur balasan otomatis akan aktif di sesi berikutnya. 🙂</p>
-        </div>
-        <div class="chat-bubble chat-bubble-user">
-          <p>Contoh: rekomendasikan sembako untuk masak nasi goreng.</p>
-        </div>
-        <div class="chat-bubble chat-bubble-ai">
-          <p>(Balasan asli belum tersedia — ini hanya tampilan antarmuka untuk Sprint 1.)</p>
+          <p>Halo! Saya asisten toko (masih versi sederhana). Coba tanya soal jam buka, ongkir, cara bayar, atau stok produk. 🙂</p>
         </div>
       </div>
 
-      <form class="chat-form" method="POST" action="/tanya-ai">
+      <div id="chatError" class="form-error" role="alert" hidden></div>
+
+      <form id="chatForm" class="chat-form" novalidate>
         <div class="form-group">
           <label for="pertanyaan">Tulis pertanyaan Anda</label>
           <textarea
             id="pertanyaan"
             name="pertanyaan"
             rows="3"
-            placeholder="Contoh: apa saja bahan yang perlu saya beli untuk membuat soto?"
-            required
+            placeholder="Contoh: jam buka toko jam berapa?"
           ></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Kirim Pertanyaan</button>
+        <button type="submit" class="btn btn-primary" id="chatSubmitBtn">Kirim Pertanyaan</button>
       </form>
     </section>
   </main>
 
   <%- include('partials/footer') %>
+  <script src="/js/chat.js"></script>
 </body>
 </html>
