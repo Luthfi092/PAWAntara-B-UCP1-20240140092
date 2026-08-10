@@ -1,11 +1,11 @@
 // routes/pages.js
 const express = require("express");
 const router = express.Router();
-const products = require("../data/products");
+const store = require("../lib/store");
 
-// GET / - Beranda: hero section + preview beberapa produk
+// GET / - Beranda: hero section + preview beberapa produk (dari store yang sama dengan API)
 router.get("/", (req, res) => {
-  const previewProducts = products.slice(0, 4);
+  const previewProducts = store.getAll().slice(0, 4);
   res.render("beranda", {
     title: "Toko Sembako Bu Aries",
     activePage: "beranda",
@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
   });
 });
 
-// GET /tanya-ai - tampilan chat + form, belum ada logic balasan
+// GET /tanya-ai - chat UI, balasan diambil lewat fetch ke POST /api/chat
 router.get("/tanya-ai", (req, res) => {
   res.render("tanya-ai", {
     title: "Tanya AI - Toko Sembako Bu Aries",
